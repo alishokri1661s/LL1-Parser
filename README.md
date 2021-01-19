@@ -1,6 +1,6 @@
 # LL1-Parser
 
-To run the code first download the zip file of project and extract it <br/>
+To run the code first download the zip file of the project and extract it <br/>
 then execute the run.bat file.
 <br /><br />
 Make sure the input grammar is LL(1).<br />
