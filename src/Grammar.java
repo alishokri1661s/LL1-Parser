@@ -141,42 +141,44 @@ public class Grammar {
     }
 
     public void initGrammar(String url){
-        File file = new File(url);
 
-        try (Scanner scanner = new Scanner(file)) {
-            int i=0;
-            while (scanner.hasNext()){
-                String rule = scanner.nextLine();
-                grammar.append(i++).append(". ").append(rule);
-                String nonT = rule.substring(0,rule.indexOf(":")).trim();
+        while (true) {
+            File file = new File(url);
+            try (Scanner scanner = new Scanner(file)) {
+                int i = 0;
+                while (scanner.hasNext()) {
+                    String rule = scanner.nextLine();
+                    grammar.append(i++).append(". ").append(rule);
+                    String nonT = rule.substring(0, rule.indexOf(":")).trim();
 
-                NonTerminal nt = new NonTerminal(nonT);
-                if (!nonTerminals.containsKey(nt))
-                    nonTerminals.put(nt,new ArrayList<>());
+                    NonTerminal nt = new NonTerminal(nonT);
+                    if (!nonTerminals.containsKey(nt))
+                        nonTerminals.put(nt, new ArrayList<>());
 
-                String[] words =  rule.substring(rule.indexOf(":")+1).trim().split(" ");
-                ArrayList<Word> list = new ArrayList<>();
-                for (String s: words) {
-                    if (s.toLowerCase().equals(s)){
-                        Terminal t = new Terminal(s);
-                        list.add(t);
-                        if(!s.equals("#"))
-                            terminals.add(t);
+                    String[] words = rule.substring(rule.indexOf(":") + 1).trim().split(" ");
+                    ArrayList<Word> list = new ArrayList<>();
+                    for (String s : words) {
+                        if (s.toLowerCase().equals(s)) {
+                            Terminal t = new Terminal(s);
+                            list.add(t);
+                            if (!s.equals("#"))
+                                terminals.add(t);
+                        } else
+                            list.add(new NonTerminal(s));
                     }
-                    else
-                        list.add(new NonTerminal(s));
+                    ProductionRule pr = new ProductionRule(nt, list);
+                    rules.add(pr);
+                    nonTerminals.get(nt).add(pr);
+                    grammar.append("\n");
                 }
-                ProductionRule pr = new ProductionRule(nt,list);
-                rules.add(pr);
-                nonTerminals.get(nt).add(pr);
-                grammar.append("\n");
+                terminals.add(new Terminal("$"));
+                break;
+            } catch (FileNotFoundException e) {
+                System.out.println("The url is wrong. Please reEnter the input file url");
+                Scanner scanner = new Scanner(System.in);
+                url = scanner.next();
             }
-            terminals.add(new Terminal("$"));
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         }
-
     }
 
     public void computeParseTable(){
