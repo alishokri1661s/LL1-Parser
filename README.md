@@ -3,8 +3,8 @@
 To run the code run this code in commandline :
 <br />
 <dl>
-    java -jar LL(1).jar
-    <br />
+    <dd>java -jar LL(1).jar</dd>
+    
 </dl>
 or you can just execute the run.bat file
 <br /><br />
