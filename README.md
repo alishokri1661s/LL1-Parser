@@ -6,6 +6,7 @@ Then you can run the projtect in two ways:
 
 * Execute the run.bat file
 * Run the "java -jar LL(1).jar" command in CMD
+<br /><br />
 **Make sure the input grammar is LL(1).**<br />
 If you want to make sure that you grammar is LL(1) or not you can use this [link](https://smlweb.cpsc.ucalgary.ca/start.html).<br/>
 Type the grammar in input.txt file or another text file with the following Example.<br />
