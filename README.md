@@ -1,11 +1,17 @@
 # LL1-Parser
 
+## Getting Started
 To run the code first download the zip file of the project and extract it <br/>
-then execute the run.bat file.
+Then you can run the projtect in two ways:
+
+* Execute the run.bat file
+* Run the "java -jar LL(1).jar" command in CMD
 <br /><br />
-Make sure the input grammar is LL(1).<br />
-Type the grammar in input.txt file or another text file with the following format:<br />
+**Make sure the input grammar is LL(1).**<br />
+If you want to make sure that you grammar is LL(1) or not you can use this [link](https://smlweb.cpsc.ucalgary.ca/start.html).<br/>
+Type the grammar in input.txt file or another text file with the following Example.<br />
 <br />
+## Example
 S : EXP<br />
 EXP : TERM EXP'<br />
 EXP' : + TERM EXP'<br />
@@ -24,3 +30,4 @@ ID : -- id<br />
 ID : ++ id<br />
 FACTOR : num<br />
 FACTOR : ( EXP )<br />
+
